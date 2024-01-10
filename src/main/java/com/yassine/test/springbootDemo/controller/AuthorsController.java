@@ -26,8 +26,8 @@ public class AuthorsController {
 
     // save Author corrected
     @PostMapping("/addauthor")
-    public Authors addAuthor(Authors book) {
-        return authorsService.addAuthor(book);
+    public void addAuthor(Authors book) {
+        authorsService.addAuthor(book);
     }
 
     // get author by Id
@@ -38,8 +38,8 @@ public class AuthorsController {
 
     // update book
     @PostMapping("updateauthor")
-    public void updateAuthor(Authors author) {
-        authorsService.updateAuthor(author);
+    public Authors updateAuthor(Authors author) {
+        return authorsService.updateAuthor(author);
     }
 
     // delete book

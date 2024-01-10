@@ -14,8 +14,8 @@ public class AuthorsService {
     @Autowired
     AuthorsRepository authorsRepository;
 
-    public Authors addAuthor(Authors book) {
-        return authorsRepository.save(book);
+    public void addAuthor(Authors author) {
+        authorsRepository.save(author);
     }
 
     public List<Authors> getAuthors() {
@@ -26,13 +26,18 @@ public class AuthorsService {
         return authorsRepository.findById(id);
     }
 
-    public void updateAuthor(Authors author) {
-        authorsRepository.save(author);
+    public Authors updateAuthor(Authors author) {
+        Authors existingAuthors = authorsRepository.findById(author.authorId()).orElse(null);
+        if (existingAuthors != null) {
+            return authorsRepository.save(author);
+        }
+        return null;
+
+
     }
 
     public void deleteAuthor(Authors author) {
         authorsRepository.delete(author);
     }
 
-    // same thing for other functions
 }

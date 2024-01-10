@@ -2,6 +2,8 @@ package com.yassine.test.springbootDemo.controller;
 
 import com.yassine.test.springbootDemo.entity.Categories;
 import com.yassine.test.springbootDemo.repository.CategoriesRepository;
+import com.yassine.test.springbootDemo.services.CategoriesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,32 +15,33 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/categories")
 public class CategoriesController {
-    CategoriesRepository categoriesRepository;
 
+    @Autowired
+    CategoriesService categoriesService;
     @GetMapping("/getall")
     public List<Categories> getCategories(){
-        return categoriesRepository.findAll();
+        return categoriesService.getCategories();
     }
 
     // save category
     @PostMapping("/addcategory")
     public void addCategory(Categories category){
-        categoriesRepository.save(category);
+        categoriesService.addCategory(category);
     }
     // get category by Id
     @GetMapping("getbyid")
     public Optional<Categories> getCategoryById(Long id){
-        return categoriesRepository.findById(id);
+        return categoriesService.getCategoryById(id);
     }
     // update category
     @PostMapping("updatecategory")
-    public void updateBook(Categories category){
-        categoriesRepository.save(category);
+    public Categories updateBook(Categories category){
+        return categoriesService.updateCategory(category);
     }
     // delete category
     @PostMapping("deletebook")
     public void deleteBook(Categories category){
-        categoriesRepository.delete(category);
+        categoriesService.deleteCategory(category);
     }
 
 }
