@@ -1,0 +1,46 @@
+package com.yassine.test.springbootDemo.entity;
+
+import jakarta.persistence.*;
+
+@Entity(name = "categories")
+public class Categories {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="categoryid")
+    private Long categoryId;
+
+    @Column(name="categoryname")
+    private String categoryName;
+
+    @Column(name = "description")
+    private String description;
+
+    public Categories() {
+    }
+
+    public Categories(String categoryName, String description) {
+        this.categoryName = categoryName;
+        this.description = description;
+    }
+
+    public Long categoryId() {
+        return categoryId;
+    }
+
+    public String categoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String description() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+}
