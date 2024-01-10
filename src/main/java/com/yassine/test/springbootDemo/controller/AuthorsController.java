@@ -1,7 +1,6 @@
 package com.yassine.test.springbootDemo.controller;
 
 import com.yassine.test.springbootDemo.entity.Authors;
-import com.yassine.test.springbootDemo.repository.AuthorsRepository;
 import com.yassine.test.springbootDemo.services.AuthorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

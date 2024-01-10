@@ -1,7 +1,6 @@
 package com.yassine.test.springbootDemo.controller;
 
 import com.yassine.test.springbootDemo.entity.Categories;
-import com.yassine.test.springbootDemo.repository.CategoriesRepository;
 import com.yassine.test.springbootDemo.services.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -12,11 +12,16 @@ public class Role {
     @Column(name = "role_name")
     private String rolename;
 
-    public Role() {
+    public Role(Long roleid) {
+        this.roleid = roleid;
     }
 
     public Role(String rolename) {
         this.rolename = rolename;
+    }
+
+    public Role() {
+
     }
 
     public Long roleid() {

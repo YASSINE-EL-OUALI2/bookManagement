@@ -1,7 +1,6 @@
 package com.yassine.test.springbootDemo.services;
 
 import com.yassine.test.springbootDemo.entity.Role;
-import com.yassine.test.springbootDemo.entity.User;
 import com.yassine.test.springbootDemo.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
