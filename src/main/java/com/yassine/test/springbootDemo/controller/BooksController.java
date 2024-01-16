@@ -2,6 +2,7 @@ package com.yassine.test.springbootDemo.controller;
 
 import com.yassine.test.springbootDemo.entity.Books;
 import com.yassine.test.springbootDemo.services.BooksService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @RequestMapping("/books")
 public class BooksController {
 
+    @Autowired
     BooksService booksService;
 
     @GetMapping("/getall")
