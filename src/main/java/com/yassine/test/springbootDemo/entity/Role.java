@@ -2,6 +2,8 @@ package com.yassine.test.springbootDemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity(name = "role")
 public class Role {
 
@@ -12,12 +14,12 @@ public class Role {
     @Column(name = "role_name")
     private String rolename;
 
-    public Role(Long roleid) {
-        this.roleid = roleid;
-    }
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 
-    public Role(String rolename) {
+    public Role(String rolename, Set<User> users) {
         this.rolename = rolename;
+        this.users = users;
     }
 
     public Role() {

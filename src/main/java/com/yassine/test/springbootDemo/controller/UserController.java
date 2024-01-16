@@ -3,35 +3,32 @@ package com.yassine.test.springbootDemo.controller;
 import com.yassine.test.springbootDemo.entity.User;
 import com.yassine.test.springbootDemo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     
     @Autowired
-    UserService userService;
-
+    private UserService userService;
 
     @GetMapping("/getall")
-    public List<User> getUser(){
-        return userService.getUser();
+    public List<User> getUsers(){
+        System.out.println(userService.getUsers());
+        return userService.getUsers();
     }
 
     // add Item
     @PostMapping("/addUser")
-    public void addItem(User user){
+    public void addUser(User user){
         userService.addUser(user);
     }
     // get Item by Id
     @GetMapping("getUserbyid")
-    public Optional<User> getUserById(Long id){
+    public Optional<User> getUserById(@RequestParam(value = "id") Long id){
         return userService.getUserById(id);
     }
     // update User

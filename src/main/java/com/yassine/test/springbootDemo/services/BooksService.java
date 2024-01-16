@@ -28,7 +28,7 @@ public class BooksService {
     public Books updateBook(Books book) {
         Books existingBooks = booksRepository.findById(book.bookId()).orElse(null);
         if (existingBooks != null) {
-            return booksRepository.save(book);
+            return booksRepository.save(existingBooks);
         }
         return null;
     }

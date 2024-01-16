@@ -2,10 +2,10 @@ package com.yassine.test.springbootDemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity(name = "users")
 public class User {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="userid")
@@ -18,19 +18,22 @@ public class User {
     private String password;
     @Column(name="active")
     private boolean active;
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @ManyToMany
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "roleid"))
+    private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String username, String email, String password, boolean active, Role role) {
+    public User(String username, String email, String password, boolean active, Set<Role> roles) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.active = active;
-        this.role = role;
+        this.roles = roles;
     }
 
     public Long userid() {
@@ -69,11 +72,23 @@ public class User {
         this.active = active;
     }
 
-    public Role role() {
-        return role;
+    public Set<Role> roles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", active=" + active +
+                ", roles=" + roles +
+                '}';
     }
 }

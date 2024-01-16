@@ -29,7 +29,7 @@ public class CategoriesService {
     public Categories updateCategory(Categories category) {
         Categories existingCategories = categoriesRepository.findById(category.categoryId()).orElse(null);
         if (existingCategories != null) {
-            return categoriesRepository.save(category);
+            return categoriesRepository.save(existingCategories);
         }
         return null;
     }

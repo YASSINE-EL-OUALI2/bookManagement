@@ -29,7 +29,7 @@ public class RoleService {
     public Role updateRole(Role role) {
         Role existingRole = roleRepository.findById(role.roleid()).orElse(null);
         if (existingRole != null) {
-            return roleRepository.save(role);
+            return roleRepository.save(existingRole);
 
         }
         return null;

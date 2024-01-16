@@ -18,7 +18,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<User> getUser() {
+    public List<User> getUsers() {
         return userRepository.findAll();
     }
 
@@ -29,7 +29,7 @@ public class UserService {
     public User updateUser(User user) {
         User existingUser = userRepository.findById(user.userid()).orElse(null);
         if (existingUser != null) {
-            return userRepository.save(user);
+            return userRepository.save(existingUser);
         }
         return null;
     }

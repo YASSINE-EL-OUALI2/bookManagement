@@ -29,7 +29,7 @@ public class AuthorsService {
     public Authors updateAuthor(Authors author) {
         Authors existingAuthors = authorsRepository.findById(author.authorId()).orElse(null);
         if (existingAuthors != null) {
-            return authorsRepository.save(author);
+            return authorsRepository.save(existingAuthors);
         }
         return null;
 
