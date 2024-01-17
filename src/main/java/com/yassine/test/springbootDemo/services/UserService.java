@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        User existingUser = userRepository.findById(user.userid()).orElse(null);
+        User existingUser = userRepository.findById(user.getUserid()).orElse(null);
         if (existingUser != null) {
             return userRepository.save(existingUser);
         }

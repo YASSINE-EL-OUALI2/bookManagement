@@ -36,11 +36,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Long userid() {
+    public Long getUserid() {
         return userid;
     }
 
-    public String username() {
+    public String getUsername() {
         return username;
     }
 
@@ -48,7 +48,7 @@ public class User {
         this.username = username;
     }
 
-    public String email() {
+    public String getEmail() {
         return email;
     }
 
@@ -56,7 +56,7 @@ public class User {
         this.email = email;
     }
 
-    public String password() {
+    public String getPassword() {
         return password;
     }
 
@@ -64,7 +64,7 @@ public class User {
         this.password = password;
     }
 
-    public boolean active() {
+    public boolean getActive() {
         return active;
     }
 
@@ -72,7 +72,7 @@ public class User {
         this.active = active;
     }
 
-    public Set<Role> roles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
@@ -91,4 +91,5 @@ public class User {
                 ", roles=" + roles +
                 '}';
     }
+
 }

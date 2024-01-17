@@ -27,11 +27,11 @@ public class Authors {
         this.books = books;
     }
 
-    public Long authorId() {
+    public Long getAuthorId() {
         return authorId;
     }
 
-    public String authorName() {
+    public String getAuthorName() {
         return authorName;
     }
 
@@ -39,7 +39,7 @@ public class Authors {
         this.authorName = authorName;
     }
 
-    public String biography() {
+    public String getBiography() {
         return biography;
     }
 
@@ -47,7 +47,7 @@ public class Authors {
         this.biography = biography;
     }
 
-    public List<Books> books() {
+    public List<Books> getBooks() {
         return books;
     }
 

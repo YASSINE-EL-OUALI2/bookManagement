@@ -33,11 +33,11 @@ public class Inventory {
         this.condition = condition;
     }
 
-    public Long inventoryId() {
+    public Long getInventoryId() {
         return inventoryId;
     }
 
-    public List<Books> books() {
+    public List<Books> getBooks() {
         return books;
     }
 
@@ -45,7 +45,7 @@ public class Inventory {
         this.books = books;
     }
 
-    public Date dateAdded() {
+    public Date getDateAdded() {
         return dateAdded;
     }
 
@@ -53,7 +53,7 @@ public class Inventory {
         this.dateAdded = dateAdded;
     }
 
-    public String shelfLocation() {
+    public String getShelfLocation() {
         return shelfLocation;
     }
 
@@ -61,7 +61,7 @@ public class Inventory {
         this.shelfLocation = shelfLocation;
     }
 
-    public String condition() {
+    public String getCondition() {
         return condition;
     }
 

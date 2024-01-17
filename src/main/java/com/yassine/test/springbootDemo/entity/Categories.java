@@ -24,11 +24,11 @@ public class Categories {
         this.description = description;
     }
 
-    public Long categoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public String categoryName() {
+    public String getCategoryName() {
         return categoryName;
     }
 
@@ -36,7 +36,7 @@ public class Categories {
         this.categoryName = categoryName;
     }
 
-    public String description() {
+    public String getDescription() {
         return description;
     }
 

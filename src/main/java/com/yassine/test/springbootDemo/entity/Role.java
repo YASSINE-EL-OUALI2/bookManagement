@@ -35,11 +35,11 @@ public class Role {
 
     }
 
-    public Long roleid() {
+    public Long getRoleid() {
         return roleid;
     }
 
-    public String rolename() {
+    public String getRolename() {
         return rolename;
     }
 

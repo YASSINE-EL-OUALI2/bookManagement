@@ -27,7 +27,7 @@ public class AuthorsService {
     }
 
     public Authors updateAuthor(Authors author) {
-        Authors existingAuthors = authorsRepository.findById(author.authorId()).orElse(null);
+        Authors existingAuthors = authorsRepository.findById(author.getAuthorId()).orElse(null);
         if (existingAuthors != null) {
             return authorsRepository.save(existingAuthors);
         }

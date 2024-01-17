@@ -27,7 +27,7 @@ public class RoleService {
     }
 
     public Role updateRole(Role role) {
-        Role existingRole = roleRepository.findById(role.roleid()).orElse(null);
+        Role existingRole = roleRepository.findById(role.getRoleid()).orElse(null);
         if (existingRole != null) {
             return roleRepository.save(existingRole);
 

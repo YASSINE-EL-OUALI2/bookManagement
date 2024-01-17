@@ -51,11 +51,11 @@ public class Books {
     public Books() {
     }
 
-    public Long bookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
@@ -63,7 +63,7 @@ public class Books {
         this.title = title;
     }
 
-    public Authors author() {
+    public Authors getAuthor() {
         return author;
     }
 
@@ -71,7 +71,7 @@ public class Books {
         this.author = author;
     }
 
-    public Categories category() {
+    public Categories getCategory() {
         return category;
     }
 
@@ -79,7 +79,7 @@ public class Books {
         this.category = category;
     }
 
-    public Inventory inventory() {
+    public Inventory getInventory() {
         return inventory;
     }
 
@@ -87,7 +87,7 @@ public class Books {
         this.inventory = inventory;
     }
 
-    public String isbn() {
+    public String getIsbn() {
         return isbn;
     }
 
@@ -95,7 +95,7 @@ public class Books {
         this.isbn = isbn;
     }
 
-    public String publisherName() {
+    public String getPublisherName() {
         return publisherName;
     }
 
@@ -103,7 +103,7 @@ public class Books {
         this.publisherName = publisherName;
     }
 
-    public int publicationYear() {
+    public int getPublicationYear() {
         return publicationYear;
     }
 
@@ -111,7 +111,7 @@ public class Books {
         this.publicationYear = publicationYear;
     }
 
-    public int quantityAvailable() {
+    public int getQuantityAvailable() {
         return quantityAvailable;
     }
 
@@ -119,7 +119,7 @@ public class Books {
         this.quantityAvailable = quantityAvailable;
     }
 
-    public float price() {
+    public float getPrice() {
         return price;
     }
 

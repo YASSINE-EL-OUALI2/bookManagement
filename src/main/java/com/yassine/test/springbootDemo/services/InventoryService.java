@@ -27,7 +27,7 @@ public class InventoryService {
     }
 
     public Inventory updateInventory(Inventory inventory) {
-        Inventory existingInventory = inventoryRepository.findById(inventory.inventoryId()).orElse(null);
+        Inventory existingInventory = inventoryRepository.findById(inventory.getInventoryId()).orElse(null);
         if (existingInventory != null) {
             return inventoryRepository.save(existingInventory);
         }
