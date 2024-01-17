@@ -126,4 +126,20 @@ public class Books {
     public void setPrice(float price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "bookId=" + bookId +
+                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", category=" + category +
+                ", inventory=" + inventory +
+                ", isbn='" + isbn + '\'' +
+                ", publisherName='" + publisherName + '\'' +
+                ", publicationYear=" + publicationYear +
+                ", quantityAvailable=" + quantityAvailable +
+                ", price=" + price +
+                '}';
+    }
 }

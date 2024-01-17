@@ -68,4 +68,15 @@ public class Inventory {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "inventoryId=" + inventoryId +
+                ", books=" + books +
+                ", dateAdded=" + dateAdded +
+                ", shelfLocation='" + shelfLocation + '\'' +
+                ", condition='" + condition + '\'' +
+                '}';
+    }
 }

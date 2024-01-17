@@ -17,6 +17,15 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleid=" + roleid +
+                ", rolename='" + rolename + '\'' +
+                ", users=" + users +
+                '}';
+    }
+
     public Role(String rolename, Set<User> users) {
         this.rolename = rolename;
         this.users = users;

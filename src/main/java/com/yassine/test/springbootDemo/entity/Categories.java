@@ -43,4 +43,13 @@ public class Categories {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Categories{" +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
