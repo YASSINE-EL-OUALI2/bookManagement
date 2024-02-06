@@ -1,8 +1,8 @@
 package com.yassine.test.springbootDemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity(name = "inventory")
@@ -13,11 +13,12 @@ public class Inventory {
     @Column(name="inventoryid")
     private Long inventoryId;
 
-    @OneToMany
-    @JoinColumn(name = "bookid")
+    @JsonIgnoreProperties("inventory")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "inventory")
+    //@JoinColumn(name = "bookid")
     private List<Books> books;
     @Column(name="dateadded")
-    private Date dateAdded;
+    private String dateAdded;
     @Column(name = "shelflocation")
     private String shelfLocation;
     @Column(name = "condition")
@@ -26,7 +27,7 @@ public class Inventory {
     public Inventory() {
     }
 
-    public Inventory(List<Books> books, Date dateAdded, String shelfLocation, String condition) {
+    public Inventory(List<Books> books, String dateAdded, String shelfLocation, String condition) {
         this.books = books;
         this.dateAdded = dateAdded;
         this.shelfLocation = shelfLocation;
@@ -45,11 +46,11 @@ public class Inventory {
         this.books = books;
     }
 
-    public Date getDateAdded() {
+    public String getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(Date dateAdded) {
+    public void setDateAdded(String dateAdded) {
         this.dateAdded = dateAdded;
     }
 

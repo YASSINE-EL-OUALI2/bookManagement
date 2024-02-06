@@ -3,47 +3,45 @@ package com.yassine.test.springbootDemo.controller;
 import com.yassine.test.springbootDemo.entity.Authors;
 import com.yassine.test.springbootDemo.services.AuthorsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("authors")
+@CrossOrigin(origins = "http://localhost:4200")
+//@RequestMapping("authors")
 public class AuthorsController {
 
     @Autowired
     AuthorsService authorsService;
 
-    @GetMapping("/getall")
+    @GetMapping("/authors/getall")
     public List<Authors> getAuthors() {
         return authorsService.getAuthors();
     }
 
     // save Author corrected
-    @PostMapping("/addauthor")
-    public void addAuthor(Authors book) {
+    @PostMapping("/authors/addauthor")
+    public void addAuthor(@RequestBody Authors book) {
         authorsService.addAuthor(book);
     }
 
     // get author by Id
-    @GetMapping("getbyid")
-    public Optional<Authors> getAuthorById(Long id) {
+    @GetMapping("/authors/getbyid")
+    public Optional<Authors> getAuthorById(@RequestParam(value = "id") Long id) {
         return authorsService.getAuthorById(id);
     }
 
     // update book
-    @PostMapping("updateauthor")
-    public Authors updateAuthor(Authors author) {
+    @PutMapping("/authorsupdateauthor")
+    public Authors updateAuthor(@RequestBody Authors author) {
         return authorsService.updateAuthor(author);
     }
 
     // delete book
-    @PostMapping("deletebook")
-    public void deleteAuthor(Authors author) {
+    @DeleteMapping("/authors/deletebook")
+    public void deleteAuthor(@RequestBody Authors author) {
         authorsService.deleteAuthor(author);
     }
 

@@ -3,43 +3,41 @@ package com.yassine.test.springbootDemo.controller;
 import com.yassine.test.springbootDemo.entity.Categories;
 import com.yassine.test.springbootDemo.services.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/categories")
+@CrossOrigin(origins = "http://localhost:4200")
+//@RequestMapping("/categories")
 public class CategoriesController {
 
     @Autowired
     CategoriesService categoriesService;
-    @GetMapping("/getall")
+    @GetMapping("/categories/getall")
     public List<Categories> getCategories(){
         return categoriesService.getCategories();
     }
 
     // save category
-    @PostMapping("/addcategory")
-    public void addCategory(Categories category){
+    @PostMapping("/categories/addcategory")
+    public void addCategory(@RequestBody Categories category){
         categoriesService.addCategory(category);
     }
     // get category by Id
-    @GetMapping("getbyid")
-    public Optional<Categories> getCategoryById(Long id){
+    @GetMapping("/categories/getbyid")
+    public Optional<Categories> getCategoryById(@RequestParam(value = "id") Long id){
         return categoriesService.getCategoryById(id);
     }
     // update category
-    @PostMapping("updatecategory")
-    public Categories updateBook(Categories category){
+    @PutMapping("/categories/updatecategory")
+    public Categories updateBook(@RequestBody Categories category){
         return categoriesService.updateCategory(category);
     }
     // delete category
-    @PostMapping("deletebook")
-    public void deleteBook(Categories category){
+    @DeleteMapping("/categories/deletebook")
+    public void deleteBook(@RequestBody Categories category){
         categoriesService.deleteCategory(category);
     }
 

@@ -3,45 +3,43 @@ package com.yassine.test.springbootDemo.controller;
 import com.yassine.test.springbootDemo.entity.Inventory;
 import com.yassine.test.springbootDemo.services.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/inventory")
+@CrossOrigin(origins = "http://localhost:4200")
+//@RequestMapping("/inventory")
 public class InventoryController {
 
     
     @Autowired
     InventoryService inventoryService;
     //get inventory
-    @GetMapping("/getall")
+    @GetMapping("/inventory/getall")
     public List<Inventory> getInventory(){
         return inventoryService.getInventory();
     }
 
     // add Item
-    @PostMapping("/additem")
-    public void addItem(Inventory inventory){
+    @PostMapping("/inventory/additem")
+    public void addItem(@RequestBody Inventory inventory){
         inventoryService.addInventory(inventory);
     }
     // get Item by Id
-    @GetMapping("getitembyid")
-    public Optional<Inventory> getItemById(Long id){
+    @GetMapping("/inventory/getitembyid")
+    public Optional<Inventory> getItemById(@RequestParam(value = "id") Long id){
         return inventoryService.getInventoryById(id);
     }
     // update inventory
-    @PostMapping("updateinventory")
-    public Inventory updateInventory(Inventory inventory){
+    @PutMapping("/inventory/updateinventory")
+    public Inventory updateInventory(@RequestBody Inventory inventory){
         return inventoryService.updateInventory(inventory);
     }
     // delete inventory
-    @PostMapping("deleteinventory")
-    public void deleteInventory(Inventory inventory){
+    @DeleteMapping("/inventory/deleteinventory")
+    public void deleteInventory(@RequestBody Inventory inventory){
         inventoryService.deleteInventory(inventory);
     }
 }

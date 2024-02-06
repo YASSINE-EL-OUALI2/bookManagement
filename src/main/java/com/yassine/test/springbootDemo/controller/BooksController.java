@@ -3,47 +3,47 @@ package com.yassine.test.springbootDemo.controller;
 import com.yassine.test.springbootDemo.entity.Books;
 import com.yassine.test.springbootDemo.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/books")
+@CrossOrigin(origins = "http://localhost:4200")
+//@RequestMapping("/books")
 public class BooksController {
 
     @Autowired
     BooksService booksService;
 
-    @GetMapping("/getall")
+    @GetMapping("/books/getall")
     public List<Books> getBooks() {
         return booksService.getBooks();
     }
 
     // save book
-    @PostMapping("/addbook")
-    public void addBook(Books book) {
+    @PostMapping("/books/addbook")
+    public void addBook(@RequestBody Books book) {
         booksService.addBook(book);
     }
 
     // get book by Id
-    @GetMapping("getbyid")
-    public Optional<Books> getBookById(Long id) {
+    @GetMapping("/books/getbyid")
+    public Books getBookById(@RequestParam(value = "id") Long id) {
         return booksService.getBookById(id);
     }
 
     // update book
-    @PostMapping("updatebook")
-    public Books updateBook(Books book) {
-        return booksService.updateBook(book);
+    @PutMapping(value = "/books/updatebook", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Books> updateBook(@RequestBody Books book) {
+        booksService.updateBook(book);
+        return ResponseEntity.ok(book);
     }
 
     // delete book
-    @PostMapping("deletebook")
-    public void deleteBook(Books book) {
+    @DeleteMapping("/books/deletebook")
+    public void deleteBook(@RequestBody Books book) {
         booksService.deleteBook(book);
     }
 

@@ -1,6 +1,8 @@
 package com.yassine.test.springbootDemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
 
 @Entity(name="books")
 public class Books {
@@ -10,15 +12,20 @@ public class Books {
     private Long bookId;
     @Column(name="title")
     private String title;
-    @ManyToOne
-    @JoinColumn(name="authorid")
-    private Authors author;
-    @ManyToOne
-    @JoinColumn(name="categoryid")
-    private Categories category;
+
 
     @ManyToOne
+    @JoinColumn(name="authorid")
+    @JsonIgnoreProperties("books")
+    private Authors author;
+
+    @ManyToOne
+    @JoinColumn(name="categoryid")
+    @JsonIgnoreProperties("books")
+    private Categories category;
+    @ManyToOne
     @JoinColumn(name = "inventoryid")
+    @JsonIgnoreProperties("books")
     private Inventory inventory;
     @Column(name="isbn")
     private String isbn;

@@ -1,5 +1,6 @@
 package com.yassine.test.springbootDemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,12 +11,14 @@ public class Authors {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "authorid")
     private Long authorId;
-    @Column(name = "authorname")
+    @Column(name = "authorname", unique = true)
     private String authorName;
     @Column(name = "biography")
     private String biography;
-    @OneToMany
-    @JoinColumn(name = "bookid")
+    //@JsonIgnoreProperties("author")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "author")
+    @JsonIgnoreProperties("author")
+    //@JoinColumn(name = "bookid")
     private List<Books> books;
 
     public Authors() {

@@ -9,35 +9,36 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200")
+//@RequestMapping("/users")
 public class UserController {
     
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getall")
+    @GetMapping("/users/getall")
     public List<User> getUsers(){
         return userService.getUsers();
     }
 
     // add Item
-    @PostMapping("/addUser")
-    public void addUser(User user){
+    @PostMapping("/users/addUser")
+    public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
     // get Item by Id
-    @GetMapping("getUserbyid")
+    @GetMapping("/users/getUserbyid")
     public Optional<User> getUserById(@RequestParam(value = "id") Long id){
         return userService.getUserById(id);
     }
     // update User
-    @PostMapping("updateUser")
-    public User updateUser(User user){
+    @PutMapping("/users/updateUser")
+    public User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
     // delete User
-    @PostMapping("deleteUser")
-    public void deleteUser(User user){
+    @DeleteMapping("/users/deleteUser")
+    public void deleteUser(@RequestBody User user){
         userService.deleteUser(user);
     }
 
