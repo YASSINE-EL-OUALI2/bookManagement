@@ -3,54 +3,55 @@ package com.yassine.test.springbootDemo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.Date;
 
-@Entity(name="books")
+
+@Entity(name = "books")
 public class Books {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="bookid")
+    @Column(name = "bookid")
     private Long bookId;
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
-
     @ManyToOne
-    @JoinColumn(name="authorid")
+    @JoinColumn(name = "authorid")
     @JsonIgnoreProperties("books")
     private Authors author;
 
     @ManyToOne
-    @JoinColumn(name="categoryid")
+    @JoinColumn(name = "categoryid")
     @JsonIgnoreProperties("books")
     private Categories category;
     @ManyToOne
     @JoinColumn(name = "inventoryid")
     @JsonIgnoreProperties("books")
     private Inventory inventory;
-    @Column(name="isbn")
+    @Column(name = "isbn")
     private String isbn;
 
 
-    @Column(name="publisherName")
+    @Column(name = "publisherName")
     private String publisherName;
 
 
-    @Column(name="publicationYear")
-    private int publicationYear;
-    @Column(name="quantityAvailable")
+    @Column(name = "publicationDate")
+    private Date publicationDate;
+    @Column(name = "quantityAvailable")
     private int quantityAvailable;
-    @Column(name="price")
+    @Column(name = "price")
     private float price;
 
 
-    public Books(String title, Authors author, Categories category, Inventory inventory, String isbn, String publisherName, int publicationYear, int quantityAvailable, float price) {
+    public Books(String title, Authors author, Categories category, Inventory inventory, String isbn, String publisherName, Date publicationDate, int quantityAvailable, float price) {
         this.title = title;
         this.author = author;
         this.category = category;
         this.inventory = inventory;
         this.isbn = isbn;
         this.publisherName = publisherName;
-        this.publicationYear = publicationYear;
+        this.publicationDate = publicationDate;
         this.quantityAvailable = quantityAvailable;
         this.price = price;
     }
@@ -110,12 +111,12 @@ public class Books {
         this.publisherName = publisherName;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
+    public Date getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setPublicationYear(int publicationYear) {
-        this.publicationYear = publicationYear;
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
     public int getQuantityAvailable() {
@@ -144,7 +145,7 @@ public class Books {
                 ", inventory=" + inventory +
                 ", isbn='" + isbn + '\'' +
                 ", publisherName='" + publisherName + '\'' +
-                ", publicationYear=" + publicationYear +
+                ", publicationDate=" + publicationDate +
                 ", quantityAvailable=" + quantityAvailable +
                 ", price=" + price +
                 '}';

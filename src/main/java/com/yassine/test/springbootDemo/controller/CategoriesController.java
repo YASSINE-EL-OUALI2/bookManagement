@@ -31,7 +31,7 @@ public class CategoriesController {
         return categoriesService.getCategoryById(id);
     }
     // update category
-    @PutMapping("/categories/updatecategory")
+    @PutMapping(value = "/categories/updatecategory", consumes = "application/json", produces = "application/json")
     public Categories updateBook(@RequestBody Categories category){
         return categoriesService.updateCategory(category);
     }

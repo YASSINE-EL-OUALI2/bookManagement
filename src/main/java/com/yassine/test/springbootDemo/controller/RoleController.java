@@ -34,7 +34,7 @@ public class RoleController {
         return roleService.getRoleById(id);
     }
     // update Role
-    @PutMapping("/role/updateRole")
+    @PutMapping(value = "/role/updateRole", consumes = "application/json", produces = "application/json")
     public Role updateRole(@RequestBody Role role){
         return roleService.updateRole(role);
     }

@@ -33,7 +33,7 @@ public class InventoryController {
         return inventoryService.getInventoryById(id);
     }
     // update inventory
-    @PutMapping("/inventory/updateinventory")
+    @PutMapping(value = "/inventory/updateinventory", consumes = "application/json", produces = "application/json")
     public Inventory updateInventory(@RequestBody Inventory inventory){
         return inventoryService.updateInventory(inventory);
     }

@@ -29,6 +29,9 @@ public class InventoryService {
     public Inventory updateInventory(Inventory inventory) {
         Inventory existingInventory = inventoryRepository.findById(inventory.getInventoryId()).orElse(null);
         if (existingInventory != null) {
+            existingInventory.setCondition(inventory.getCondition());
+            existingInventory.setDateAdded(inventory.getDateAdded());
+            existingInventory.setShelfLocation(inventory.getShelfLocation());
             return inventoryRepository.save(existingInventory);
         }
         return null;

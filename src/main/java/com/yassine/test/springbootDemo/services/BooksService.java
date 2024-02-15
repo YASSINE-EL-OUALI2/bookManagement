@@ -86,7 +86,7 @@ public class BooksService {
             existingBook.setTitle(book.getTitle());
             existingBook.setIsbn(book.getIsbn());
             existingBook.setPublisherName(book.getPublisherName());
-            existingBook.setPublicationYear(book.getPublicationYear());
+            existingBook.setPublicationDate(book.getPublicationDate());
             existingBook.setQuantityAvailable(book.getQuantityAvailable());
             existingBook.setPrice(book.getPrice());
 

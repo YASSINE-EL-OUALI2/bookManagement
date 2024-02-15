@@ -47,4 +47,22 @@ public class BooksController {
         booksService.deleteBook(book);
     }
 
+    // check Threshold
+    @GetMapping("/books/checkthreshold")
+    public ResponseEntity<String> checkThreshold(@RequestParam(value = "id") Long id) {
+        Optional<Books> bookFnd = Optional.ofNullable(booksService.getBookById(id));
+        if (bookFnd.isPresent()) {
+            int threshold = 5;
+            Books book = bookFnd.get();
+            if (book.getQuantityAvailable() < threshold) {
+                return ResponseEntity.ok("Book quantity below threshold.");
+            } else {
+                return ResponseEntity.ok("Book quantity above threshold.");
+
+            }
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

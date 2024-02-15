@@ -34,7 +34,7 @@ public class AuthorsController {
     }
 
     // update book
-    @PutMapping("/authorsupdateauthor")
+    @PutMapping(value = "/authors/updateauthor", consumes = "application/json", produces = "application/json")
     public Authors updateAuthor(@RequestBody Authors author) {
         return authorsService.updateAuthor(author);
     }

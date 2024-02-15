@@ -29,6 +29,8 @@ public class CategoriesService {
     public Categories updateCategory(Categories category) {
         Categories existingCategories = categoriesRepository.findById(category.getCategoryId()).orElse(null);
         if (existingCategories != null) {
+            existingCategories.setCategoryName(category.getCategoryName());
+            existingCategories.setDescription(category.getDescription());
             return categoriesRepository.save(existingCategories);
         }
         return null;

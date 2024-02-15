@@ -32,7 +32,7 @@ public class UserController {
         return userService.getUserById(id);
     }
     // update User
-    @PutMapping("/users/updateUser")
+    @PutMapping(value = "/users/updateUser", consumes = "application/json", produces = "application/json")
     public User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
