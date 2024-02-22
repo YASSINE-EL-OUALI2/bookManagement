@@ -1,4 +1,4 @@
-package com.yassine.test.springbootDemo.controller;
+package com.yassine.test.springbootDemo.controllers;
 
 import com.yassine.test.springbootDemo.entity.Books;
 import com.yassine.test.springbootDemo.services.BooksService;
@@ -10,39 +10,39 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-//@RequestMapping("/books")
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/books")
 public class BooksController {
 
     @Autowired
     BooksService booksService;
 
-    @GetMapping("/books/getall")
+    @GetMapping("/getall")
     public List<Books> getBooks() {
         return booksService.getBooks();
     }
 
     // save book
-    @PostMapping("/books/addbook")
+    @PostMapping("/addbook")
     public void addBook(@RequestBody Books book) {
         booksService.addBook(book);
     }
 
     // get book by Id
-    @GetMapping("/books/getbyid")
+    @GetMapping("/getbyid")
     public Books getBookById(@RequestParam(value = "id") Long id) {
         return booksService.getBookById(id);
     }
 
     // update book
-    @PutMapping(value = "/books/updatebook", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/updatebook", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Books> updateBook(@RequestBody Books book) {
         booksService.updateBook(book);
         return ResponseEntity.ok(book);
     }
 
     // delete book
-    @DeleteMapping("/books/deletebook")
+    @DeleteMapping(value = "/deletebook", consumes = "application/json")
     public void deleteBook(@RequestBody Books book) {
         booksService.deleteBook(book);
     }

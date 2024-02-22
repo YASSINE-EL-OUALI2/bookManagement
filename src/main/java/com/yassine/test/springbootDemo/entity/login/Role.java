@@ -1,35 +1,27 @@
-package com.yassine.test.springbootDemo.entity;
+package com.yassine.test.springbootDemo.entity.login;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
-@Entity(name = "role")
+@Entity
+@Table(name = "roles")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private Long roleid;
-    @Column(name = "role_name")
-    private String rolename;
-
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role_name", length = 20)
+    private ERole rolename;
 
     @Override
     public String toString() {
         return "Role{" +
                 "roleid=" + roleid +
                 ", rolename='" + rolename + '\'' +
-                ", users=" + users +
                 '}';
     }
 
-    public Role(String rolename, Set<User> users) {
-        this.rolename = rolename;
-        this.users = users;
-    }
 
     public Role() {
 
@@ -39,11 +31,11 @@ public class Role {
         return roleid;
     }
 
-    public String getRolename() {
+    public ERole getRolename() {
         return rolename;
     }
 
-    public void setRolename(String rolename) {
+    public void setRolename(ERole rolename) {
         this.rolename = rolename;
     }
 }

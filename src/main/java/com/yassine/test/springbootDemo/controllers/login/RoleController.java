@@ -1,7 +1,7 @@
-package com.yassine.test.springbootDemo.controller;
+package com.yassine.test.springbootDemo.controllers.login;
 
-import com.yassine.test.springbootDemo.entity.Role;
-import com.yassine.test.springbootDemo.services.RoleService;
+import com.yassine.test.springbootDemo.entity.login.Role;
+import com.yassine.test.springbootDemo.services.login.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

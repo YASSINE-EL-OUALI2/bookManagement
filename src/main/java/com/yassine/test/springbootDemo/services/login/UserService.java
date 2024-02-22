@@ -1,7 +1,7 @@
-package com.yassine.test.springbootDemo.services;
+package com.yassine.test.springbootDemo.services.login;
 
-import com.yassine.test.springbootDemo.entity.User;
-import com.yassine.test.springbootDemo.repository.UserRepository;
+import com.yassine.test.springbootDemo.entity.login.User;
+import com.yassine.test.springbootDemo.repository.login.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
