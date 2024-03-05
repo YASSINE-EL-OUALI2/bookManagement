@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
 @RequestMapping("/api/categories")
 public class CategoriesController {
 
@@ -40,7 +40,7 @@ public class CategoriesController {
     }
 
     // delete category
-    @DeleteMapping(value = "/deletebook", consumes = "application/json")
+    @DeleteMapping(value = "/deletecategory", consumes = "application/json")
     public void deleteBook(@RequestBody Categories category) {
         categoriesService.deleteCategory(category);
     }

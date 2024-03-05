@@ -10,34 +10,34 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-//@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
     
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users/getall")
+    @GetMapping("/getall")
     public List<User> getUsers(){
         return userService.getUsers();
     }
 
     // add Item
-    @PostMapping("/users/addUser")
+    @PostMapping("/addUser")
     public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
     // get Item by Id
-    @GetMapping("/users/getUserbyid")
+    @GetMapping("/getUserbyid")
     public Optional<User> getUserById(@RequestParam(value = "id") Long id){
         return userService.getUserById(id);
     }
     // update User
-    @PutMapping(value = "/users/updateUser", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/updateUser", consumes = "application/json", produces = "application/json")
     public User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
     // delete User
-    @DeleteMapping("/users/deleteUser")
+    @DeleteMapping("/deleteUser")
     public void deleteUser(@RequestBody User user){
         userService.deleteUser(user);
     }

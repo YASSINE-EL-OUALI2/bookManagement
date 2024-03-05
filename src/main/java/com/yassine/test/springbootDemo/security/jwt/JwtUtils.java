@@ -3,7 +3,6 @@ package com.yassine.test.springbootDemo.security.jwt;
 import com.yassine.test.springbootDemo.services.login.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 import jakarta.servlet.http.Cookie;
@@ -17,11 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
 import java.security.Key;
-import java.util.Arrays;
 import java.util.Date;
-
-import static java.lang.Integer.parseInt;
-import static java.lang.Long.parseLong;
 
 @Component
 public class JwtUtils {
@@ -91,12 +86,11 @@ public class JwtUtils {
     }
 
     public String generateTokenFromUsername(String username) {
-        long expired = System.currentTimeMillis() + Long.parseLong(jwtExpirationMs);
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(expired))
-                .signWith(key())
+                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(jwtExpirationMs)))
+                .signWith(key(),SignatureAlgorithm.HS256)
                 .compact();
     }
 }
