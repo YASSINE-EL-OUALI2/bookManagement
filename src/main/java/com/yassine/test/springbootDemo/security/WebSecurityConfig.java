@@ -40,7 +40,7 @@ public class WebSecurityConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
         authProvider.setUserDetailsService(userDetailsService);
-        ;
+
         authProvider.setPasswordEncoder(passwordEncoder());
 
         return authProvider;
@@ -62,34 +62,34 @@ public class WebSecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizeHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                              auth.requestMatchers("/api/auth/**").permitAll()
-                                  .requestMatchers("/api/test/**").permitAll()
-                                      .requestMatchers("/api/books/getall").permitAll()
-                                      .requestMatchers("/api/books/getbyid").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/books/addbook").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/books/updatebook").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/books/deletebook").hasRole("ADMIN")
-                                      .requestMatchers("/api/authors/getall").permitAll()
-                                      .requestMatchers("/api/authors/getbyid").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/authors/addauthor").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/authors/updateauthor").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/authors/deleteauthor").hasRole("ADMIN")
-                                      .requestMatchers("/api/categories/getall").permitAll()
-                                      .requestMatchers("/api/categories/getbyid").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/categories/addcategory").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/categories/updatecategory").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/categories/deletecategory").hasRole("ADMIN")
-                                      .requestMatchers("/api/inventory/getall").permitAll()
-                                      .requestMatchers("/api/inventory/getitembyid").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/inventory/additem").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/inventory/updateinventory").hasAnyRole("ADMIN","MODERATOR")
-                                      .requestMatchers("/api/inventory/deleteinventory").hasRole("ADMIN")
-                                      .requestMatchers("/api/users/getall").hasRole("ADMIN")
-                                      .requestMatchers("/api/users/addUser").hasRole("ADMIN")
-                                      .requestMatchers("/api/users/updateUser").hasRole("ADMIN")
-                                      .requestMatchers("/api/users/deleteUser").hasRole("ADMIN")
-                                      .requestMatchers("/api/users/getUserbyid").hasRole("ADMIN")
-                                      .anyRequest().authenticated()
+                        auth.requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/test/**").hasAnyRole("ADMIN", "MODERATOR", "USER")
+                                .requestMatchers("/api/books/getall").hasAnyRole("ADMIN", "MODERATOR", "USER")
+                                .requestMatchers("/api/books/getbyid").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/books/addbook").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/books/updatebook").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/books/deletebook").hasRole("ADMIN")
+                                .requestMatchers("/api/authors/getall").hasAnyRole("ADMIN", "MODERATOR", "USER")
+                                .requestMatchers("/api/authors/getbyid").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/authors/addauthor").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/authors/updateauthor").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/authors/deleteauthor").hasRole("ADMIN")
+                                .requestMatchers("/api/categories/getall").hasAnyRole("ADMIN", "MODERATOR", "USER")
+                                .requestMatchers("/api/categories/getbyid").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/categories/addcategory").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/categories/updatecategory").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/categories/deletecategory").hasRole("ADMIN")
+                                .requestMatchers("/api/inventory/getall").hasAnyRole("ADMIN", "MODERATOR", "USER")
+                                .requestMatchers("/api/inventory/getitembyid").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/inventory/additem").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/inventory/updateinventory").hasAnyRole("ADMIN", "MODERATOR")
+                                .requestMatchers("/api/inventory/deleteinventory").hasRole("ADMIN")
+                                .requestMatchers("/api/users/getall").hasRole("ADMIN")
+                                .requestMatchers("/api/users/addUser").hasRole("ADMIN")
+                                .requestMatchers("/api/users/updateUser").hasRole("ADMIN")
+                                .requestMatchers("/api/users/deleteUser").hasRole("ADMIN")
+                                .requestMatchers("/api/users/getUserbyid").hasRole("ADMIN")
+                                .anyRequest().authenticated()
 
                 );
         http.authenticationProvider(authenticationProvider());

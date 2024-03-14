@@ -5,7 +5,6 @@ import com.yassine.test.springbootDemo.services.login.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.WebUtils;
 
 import java.security.Key;
 import java.util.Date;
@@ -35,12 +33,10 @@ public class JwtUtils {
 
 
     public String getJwtFromCookies(HttpServletRequest request) {
-        Cookie cookie = WebUtils.getCookie(request, jwtCookie);
-        if (cookie != null) {
-            return cookie.getValue();
-        } else {
-            return null;
+        if (null != request.getHeader("Authorization")) {
+            return request.getHeader("Authorization").substring(7);
         }
+        return null;
     }
 
     public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal) {
@@ -60,17 +56,7 @@ public class JwtUtils {
 
     public boolean validateJwtToken(String authToken) {
         try {
-            Jws<Claims> claimsJws = Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(authToken);
-            Claims claims = claimsJws.getBody();
-
-            // Log decoded header, payload, and signature
-            logger.info("Decoded Header: {}", claimsJws.getHeader());
-            logger.info("Decoded Payload: {}", claims);
-            logger.info("Decoded Signature: {}", claimsJws.getSignature());
-
-            // Log expiration time
-            logger.info("Token expiration: {}", claims.getExpiration());
-
+            Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(authToken);
             return true;
         } catch (MalformedJwtException e) {
             logger.error("Invalid JWT token: {}", e.getMessage());
@@ -90,7 +76,7 @@ public class JwtUtils {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(jwtExpirationMs)))
-                .signWith(key(),SignatureAlgorithm.HS256)
+                .signWith(key())
                 .compact();
     }
 }
