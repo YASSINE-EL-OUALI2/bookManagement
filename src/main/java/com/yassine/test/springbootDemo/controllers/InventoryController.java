@@ -2,6 +2,7 @@ package com.yassine.test.springbootDemo.controllers;
 
 import com.yassine.test.springbootDemo.entity.Inventory;
 import com.yassine.test.springbootDemo.services.InventoryService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
 @RequestMapping("/api/inventory")
+@SecurityRequirement(name = "bearerAuth")
 public class InventoryController {
 
 

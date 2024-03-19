@@ -2,6 +2,7 @@ package com.yassine.test.springbootDemo.controllers;
 
 import com.yassine.test.springbootDemo.entity.Books;
 import com.yassine.test.springbootDemo.services.BooksService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
 @RequestMapping("/api/books")
+@SecurityRequirement(name = "bearerAuth")
 public class BooksController {
 
     @Autowired

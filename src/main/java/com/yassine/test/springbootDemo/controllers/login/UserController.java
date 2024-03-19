@@ -2,6 +2,7 @@ package com.yassine.test.springbootDemo.controllers.login;
 
 import com.yassine.test.springbootDemo.entity.login.User;
 import com.yassine.test.springbootDemo.services.login.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/users")
+@SecurityRequirement(name = "bearerAuth")
 public class UserController {
     
     @Autowired

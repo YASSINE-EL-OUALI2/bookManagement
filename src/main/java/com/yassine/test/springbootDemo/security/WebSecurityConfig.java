@@ -62,7 +62,7 @@ public class WebSecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizeHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/auth/**").permitAll()
+                        auth.requestMatchers("/api/auth/**","/v3/api-docs/**", "/swagger-ui/**").permitAll()
                                 .requestMatchers("/api/test/**").hasAnyRole("ADMIN", "MODERATOR", "USER")
                                 .requestMatchers("/api/books/getall").hasAnyRole("ADMIN", "MODERATOR", "USER")
                                 .requestMatchers("/api/books/getbyid").hasAnyRole("ADMIN", "MODERATOR")
