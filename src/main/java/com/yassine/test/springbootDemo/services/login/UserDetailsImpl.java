@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,12 +22,16 @@ public class UserDetailsImpl implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String email, String password,
+    @SuppressWarnings("unused")
+    private Date createdAt;
+
+    public UserDetailsImpl(Long id, String username, String email, String password, Date createdAt,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.createdAt = createdAt;
         this.authorities = authorities;
     }
 
@@ -39,6 +44,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getCreatedAt(),
                 authorities);
     }
 
@@ -58,6 +64,11 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+    
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
     @Override

@@ -65,6 +65,8 @@ public class AuthController {
         return ResponseEntity.ok().body(new UserInfoResponse(userDetails.getId(),
                         userDetails.getUsername(),
                         userDetails.getEmail(),
+                        userDetails.getCreatedAt(),
+
                         roles, jwtCookie.toString()));
     }
 

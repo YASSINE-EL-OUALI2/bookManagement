@@ -1,5 +1,6 @@
 package com.yassine.test.springbootDemo.payload.response;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserInfoResponse {
@@ -7,12 +8,14 @@ public class UserInfoResponse {
     private String username;
     private String email;
     private List<String> roles;
+    private Date createdAt;
     private String jwt;
 
-    public UserInfoResponse(Long id, String username, String email, List<String> roles, String token) {
+    public UserInfoResponse(Long id, String username, String email, Date createdAt, List<String> roles, String token) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.createdAt = createdAt;
         this.roles = roles;
         jwt = token;
     }
@@ -33,6 +36,10 @@ public class UserInfoResponse {
         this.id = id;
     }
 
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -51,6 +58,10 @@ public class UserInfoResponse {
 
     public List<String> getRoles() {
         return roles;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
 }

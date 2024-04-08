@@ -25,6 +25,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private UserDetailsServiceImpl userDetailsService;
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
+    @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(@Nonnull HttpServletRequest request, HttpServletResponse response, FilterChain filetChain)
             throws ServletException, IOException {
