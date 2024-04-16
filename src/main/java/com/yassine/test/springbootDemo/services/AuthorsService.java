@@ -1,12 +1,12 @@
 package com.yassine.test.springbootDemo.services;
 
 import com.yassine.test.springbootDemo.entity.Authors;
+import com.yassine.test.springbootDemo.errorHandling.AuthorsException;
 import com.yassine.test.springbootDemo.repository.AuthorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AuthorsService {
@@ -22,10 +22,11 @@ public class AuthorsService {
         return authorsRepository.findAll();
     }
 
-    public Optional<Authors> getAuthorById(Long id) {
-        return authorsRepository.findById(id);
+    public Authors getAuthorById(Long id) {
+        return authorsRepository.findById(id)
+                .orElseThrow(() -> new AuthorsException("Author Not Found"));
     }
-
+    
     public Authors updateAuthor(Authors author) {
         Authors existingAuthors = authorsRepository.findById(author.getAuthorId()).orElse(null);
         if (existingAuthors != null) {
@@ -34,7 +35,6 @@ public class AuthorsService {
             return authorsRepository.save(existingAuthors);
         }
         return null;
-
 
     }
 

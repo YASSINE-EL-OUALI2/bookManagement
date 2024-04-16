@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
@@ -52,19 +51,15 @@ public class BooksController {
     // check Threshold
     @GetMapping("/books/checkthreshold")
     public ResponseEntity<String> checkThreshold(@RequestParam(value = "id") Long id) {
-        Optional<Books> bookFnd = Optional.ofNullable(booksService.getBookById(id));
-        if (bookFnd.isPresent()) {
+        Books bookFnd = booksService.getBookById(id);
             int threshold = 5;
-            Books book = bookFnd.get();
-            if (book.getQuantityAvailable() < threshold) {
+            if (bookFnd.getQuantityAvailable() < threshold) {
                 return ResponseEntity.ok("Book quantity below threshold.");
             } else {
                 return ResponseEntity.ok("Book quantity above threshold.");
 
             }
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+
     }
 
 }

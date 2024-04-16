@@ -4,6 +4,10 @@ import com.yassine.test.springbootDemo.entity.Authors;
 import com.yassine.test.springbootDemo.entity.Books;
 import com.yassine.test.springbootDemo.entity.Categories;
 import com.yassine.test.springbootDemo.entity.Inventory;
+import com.yassine.test.springbootDemo.errorHandling.AuthorsException;
+import com.yassine.test.springbootDemo.errorHandling.BooksException;
+import com.yassine.test.springbootDemo.errorHandling.CategoriesException;
+import com.yassine.test.springbootDemo.errorHandling.InventoriesException;
 import com.yassine.test.springbootDemo.repository.AuthorsRepository;
 import com.yassine.test.springbootDemo.repository.BooksRepository;
 import com.yassine.test.springbootDemo.repository.CategoriesRepository;
@@ -14,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -36,20 +39,20 @@ public class BooksService {
         Long inventoryId = Optional.ofNullable(book.getInventory()).map(Inventory::getInventoryId).orElse(null);
         if (inventoryId != null) {
             Inventory inventoryFound = inventoryRepo.findById(inventoryId)
-                    .orElseThrow(() -> new NoSuchElementException("Inventory not present for book with title: " + book.getTitle()));
+                    .orElseThrow(() -> new InventoriesException("Inventory not present for book with title: " + book.getTitle()));
             book.setInventory(inventoryFound);
         }
         Long categoryId = Optional.ofNullable(book.getCategory()).map(Categories::getCategoryId).orElse(null);
         if (categoryId != null) {
             Categories categoryFound = this.categoryRepo.findById(categoryId)
-                    .orElseThrow(() -> new NoSuchElementException("Category not present for book with title: " + book.getTitle()));
+                    .orElseThrow(() -> new CategoriesException("Category not present for book with title: " + book.getTitle()));
             book.setCategory(categoryFound);
 
         }
         Long authorId = Optional.ofNullable(book.getAuthor()).map(Authors::getAuthorId).orElse(null);
         if (authorId != null) {
             Authors authorFound = this.authorsRepo.findById(book.getAuthor().getAuthorId())
-                    .orElseThrow(() -> new NoSuchElementException("Author not present for book with title: " + book.getTitle()));
+                    .orElseThrow(() -> new AuthorsException("Author not present for book with title: " + book.getTitle()));
             book.setAuthor(authorFound);
         }
 
@@ -65,7 +68,8 @@ public class BooksService {
     }
 
     public Books getBookById(Long id) {
-        Books bookFounded = booksRepository.findById(id).orElse(null);
+        Books bookFounded = booksRepository.findById(id)
+        .orElseThrow(() -> new BooksException(" Book Not Found !"));
         if (bookFounded != null) {
             if (bookFounded.getAuthor() != null) {
                 Hibernate.initialize(bookFounded.getAuthor());
@@ -81,7 +85,8 @@ public class BooksService {
     }
 
     public Books updateBook(Books book) {
-        Books existingBook = booksRepository.findById(book.getBookId()).orElse(null);
+        Books existingBook = booksRepository.findById(book.getBookId())
+        .orElseThrow(() -> new BooksException(" Book Not Found !"));
         if (existingBook != null) {
             existingBook.setTitle(book.getTitle());
             existingBook.setIsbn(book.getIsbn());

@@ -1,12 +1,12 @@
 package com.yassine.test.springbootDemo.services;
 
 import com.yassine.test.springbootDemo.entity.Inventory;
+import com.yassine.test.springbootDemo.errorHandling.InventoriesException;
 import com.yassine.test.springbootDemo.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InventoryService {
@@ -22,12 +22,14 @@ public class InventoryService {
         return inventoryRepository.findAll();
     }
 
-    public Optional<Inventory> getInventoryById(Long id) {
-        return inventoryRepository.findById(id);
+    public Inventory getInventoryById(Long id) {
+        return inventoryRepository.findById(id)
+                .orElseThrow(() -> new InventoriesException("Inventory Not Found !"));
     }
 
     public Inventory updateInventory(Inventory inventory) {
-        Inventory existingInventory = inventoryRepository.findById(inventory.getInventoryId()).orElse(null);
+        Inventory existingInventory = inventoryRepository.findById(inventory.getInventoryId())
+                .orElseThrow(() -> new InventoriesException("Inventory Not Found !"));
         if (existingInventory != null) {
             existingInventory.setCondition(inventory.getCondition());
             existingInventory.setDateAdded(inventory.getDateAdded());

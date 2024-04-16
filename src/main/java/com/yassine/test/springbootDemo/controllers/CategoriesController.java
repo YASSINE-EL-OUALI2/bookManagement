@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
@@ -32,7 +31,7 @@ public class CategoriesController {
 
     // get category by Id
     @GetMapping("/getbyid")
-    public Optional<Categories> getCategoryById(@RequestParam(value = "id") Long id) {
+    public Categories getCategoryById(@RequestParam(value = "id") Long id) {
         return categoriesService.getCategoryById(id);
     }
 
